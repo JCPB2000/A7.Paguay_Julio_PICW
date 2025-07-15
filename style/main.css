@@ -1,0 +1,12 @@
+/* Estilos globales para la página */
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+input-range,
+par-impar-lista {
+  display: block;
+  margin-bottom: 20px;
+}
