@@ -27,4 +27,13 @@ class InputRange extends HTMLElement {
     const inicio = parseInt(this.shadowRoot.querySelector('#inicio').value);
     const fin = parseInt(this.shadowRoot.querySelector('#fin').value);
 
-    
+ // Validación de campos numéricos y lógica del rango
+    if (isNaN(inicio) || isNaN(fin)) {
+      alert("Por favor, ingrese valores numéricos.");
+      return;
+    }
+
+    if (inicio > fin) {
+      alert("El número inicial debe ser menor o igual al final.");
+      return;
+    }
