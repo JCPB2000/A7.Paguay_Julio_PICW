@@ -53,3 +53,6 @@ class ParImparLista extends HTMLElement {
 
 // Registro del componente personalizado
 customElements.define("par-impar-lista", ParImparLista);
+
+
+// https://github.com/JCPB2000/A7.Paguay_Julio_PICW.git
