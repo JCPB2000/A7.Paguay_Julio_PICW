@@ -32,7 +32,7 @@ class ParImparLista extends HTMLElement {
     `;
 
     // Escucha el evento personalizado enviado desde input-range
-    window.addEventListener('rango-seleccionado', (event) => {
+    window.addEventListener("rango-seleccionado", (event) => {
       const { inicio, fin } = event.detail;
       this.mostrarLista(inicio, fin);
     });
@@ -40,16 +40,16 @@ class ParImparLista extends HTMLElement {
 
   // Genera y muestra la lista de números con "Par" o "Impar"
   mostrarLista(inicio, fin) {
-    const contenedor = this.shadowRoot.querySelector('#resultado');
-    contenedor.innerHTML = ''; // Limpia contenido anterior
+    const contenedor = this.shadowRoot.querySelector("#resultado");
+    contenedor.innerHTML = ""; // Limpia contenido anterior
 
     for (let i = inicio; i <= fin; i++) {
-      const parrafo = document.createElement('p');
-      parrafo.textContent = `${i} - ${i % 2 === 0 ? 'Par' : 'Impar'}`;
+      const parrafo = document.createElement("p");
+      parrafo.textContent = `${i} - ${i % 2 === 0 ? "Par" : "Impar"}`;
       contenedor.appendChild(parrafo);
     }
   }
 }
 
 // Registro del componente personalizado
-customElements.define('par-impar-lista', ParImparLista);
+customElements.define("par-impar-lista", ParImparLista);

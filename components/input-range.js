@@ -44,15 +44,15 @@ class InputRange extends HTMLElement {
       <button id="enviar">Enviar</button>
     `;
 
-    // Acción del botón: obtiene valores y llama a enviarRango()
-    this.shadowRoot.querySelector('#enviar')
-      .addEventListener('click', () => this.enviarRango());
+    // Acción del botón: obtiene valores y llama a enviarRango
+    this.shadowRoot.querySelector("#enviar")
+      .addEventListener("click", () => this.enviarRango());
   }
 
   // Valida los números y lanza un evento con el rango
   enviarRango() {
-    const inicio = parseInt(this.shadowRoot.querySelector('#inicio').value);
-    const fin = parseInt(this.shadowRoot.querySelector('#fin').value);
+    const inicio = parseInt(this.shadowRoot.querySelector("#inicio").value);
+    const fin = parseInt(this.shadowRoot.querySelector("#fin").value);
 
     // Validación de campos
     if (isNaN(inicio) || isNaN(fin)) {
@@ -66,7 +66,7 @@ class InputRange extends HTMLElement {
     }
 
     // Enviar evento personalizado con los datos del rango
-    const evento = new CustomEvent('rango-seleccionado', {
+    const evento = new CustomEvent("rango-seleccionado", {
       detail: { inicio, fin },
       bubbles: true,
       composed: true
@@ -76,5 +76,5 @@ class InputRange extends HTMLElement {
   }
 }
 
-// Registro del componente
-customElements.define('input-range', InputRange);
+// Registro del componente personalizado
+customElements.define("input-range", InputRange);
