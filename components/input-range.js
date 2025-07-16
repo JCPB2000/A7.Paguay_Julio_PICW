@@ -1,20 +1,42 @@
-// Captura dos valores numéricos: inicio y fin, y emite un evento personalizado
+// Componente para capturar el rango e iniciar el evento
 
 class InputRange extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: 'open' }); // Crea Shadow DOM
   }
 
   connectedCallback() {
-    // Estructura HTML del componente con campos de entrada y botón
+    // Estructura HTML con campos numéricos y botón
     this.shadowRoot.innerHTML = `
       <style>
-        label, input, button {
-          margin: 5px;
-          font-size: 16px;
+        label {
+          margin-right: 8px;
+          font-weight: bold;
+          color: #884ea0;
+        }
+
+        input {
+          padding: 6px;
+          border-radius: 6px;
+          border: 1px solid #bb8fce;
+          margin-right: 10px;
+        }
+
+        button {
+          padding: 6px 14px;
+          background-color: #5dade2;
+          color: white;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+        }
+
+        button:hover {
+          background-color: #3498db;
         }
       </style>
+
       <label for="inicio">Inicio:</label>
       <input type="number" id="inicio" min="0">
       <label for="fin">Fin:</label>
@@ -22,17 +44,17 @@ class InputRange extends HTMLElement {
       <button id="enviar">Enviar</button>
     `;
 
-    // Asignación de evento al botón
+    // Acción del botón: obtiene valores y llama a enviarRango()
     this.shadowRoot.querySelector('#enviar')
       .addEventListener('click', () => this.enviarRango());
   }
 
-  // Función que valida y emite el rango mediante un evento personalizado
+  // Valida los números y lanza un evento con el rango
   enviarRango() {
     const inicio = parseInt(this.shadowRoot.querySelector('#inicio').value);
     const fin = parseInt(this.shadowRoot.querySelector('#fin').value);
 
-    // Validación de campos numéricos y lógica del rango
+    // Validación de campos
     if (isNaN(inicio) || isNaN(fin)) {
       alert("Por favor, ingrese valores numéricos.");
       return;
@@ -43,7 +65,7 @@ class InputRange extends HTMLElement {
       return;
     }
 
-    // Emisión del evento personalizado con los datos del rango
+    // Enviar evento personalizado con los datos del rango
     const evento = new CustomEvent('rango-seleccionado', {
       detail: { inicio, fin },
       bubbles: true,
@@ -54,5 +76,5 @@ class InputRange extends HTMLElement {
   }
 }
 
-// Registro del componente personalizado
+// Registro del componente
 customElements.define('input-range', InputRange);

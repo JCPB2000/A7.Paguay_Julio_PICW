@@ -1,12 +1,25 @@
 /* Estilos globales para la página */
 body {
   font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #f9f9f9;
+  background: #fef9e7;
+  color: #2c3e50;
+  padding: 30px;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #d35400;
 }
 
 input-range,
 par-impar-lista {
   display: block;
-  margin-bottom: 20px;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 600px;
+  background-color: #fef5e7;
+  border: 2px solid #f5cba7;
+  border-radius: 12px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
 }

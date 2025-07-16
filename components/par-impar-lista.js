@@ -1,39 +1,47 @@
-// Escucha el evento y muestra la lista de números indicando si son pares o impares
+// Componente que escucha el evento y muestra la lista de números indicando si son pares o impares
 
 class ParImparLista extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: 'open' }); // Crea Shadow DOM
   }
 
   connectedCallback() {
-    // Estructura HTML inicial del componente
+    // Contenido del componente con estilos y contenedor de resultados
     this.shadowRoot.innerHTML = `
       <style>
         h2 {
-          font-size: 18px;
+          font-size: 20px;
+          color: #ca6f1e;
+          text-align: center;
           margin-bottom: 10px;
         }
+
         p {
-          margin: 3px 0;
+          background-color: #d6eaf8;
+          padding: 6px 10px;
+          margin: 4px 0;
+          border-radius: 6px;
           font-family: monospace;
+          width: fit-content;
         }
       </style>
+
       <h2>Resultado</h2>
       <div id="resultado"></div>
     `;
 
-    // Se escucha el evento personalizado emitido por el otro componente
+    // Escucha el evento personalizado enviado desde input-range
     window.addEventListener('rango-seleccionado', (event) => {
       const { inicio, fin } = event.detail;
       this.mostrarLista(inicio, fin);
     });
   }
 
-  // Función que genera la lista y muestra si cada número es par o impar
+  // Genera y muestra la lista de números con "Par" o "Impar"
   mostrarLista(inicio, fin) {
     const contenedor = this.shadowRoot.querySelector('#resultado');
-    contenedor.innerHTML = '';
+    contenedor.innerHTML = ''; // Limpia contenido anterior
 
     for (let i = inicio; i <= fin; i++) {
       const parrafo = document.createElement('p');
