@@ -3,7 +3,7 @@
 class ParImparLista extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' }); 
+    this.attachShadow({ mode: 'open' });
   }
 
   connectedCallback() {
@@ -30,4 +30,18 @@ class ParImparLista extends HTMLElement {
     });
   }
 
-  
+  // Función que genera la lista y muestra si cada número es par o impar
+  mostrarLista(inicio, fin) {
+    const contenedor = this.shadowRoot.querySelector('#resultado');
+    contenedor.innerHTML = '';
+
+    for (let i = inicio; i <= fin; i++) {
+      const parrafo = document.createElement('p');
+      parrafo.textContent = `${i} - ${i % 2 === 0 ? 'Par' : 'Impar'}`;
+      contenedor.appendChild(parrafo);
+    }
+  }
+}
+
+// Registro del componente personalizado
+customElements.define('par-impar-lista', ParImparLista);

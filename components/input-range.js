@@ -1,3 +1,5 @@
+// Captura dos valores numéricos: inicio y fin, y emite un evento personalizado
+
 class InputRange extends HTMLElement {
   constructor() {
     super();
@@ -5,6 +7,7 @@ class InputRange extends HTMLElement {
   }
 
   connectedCallback() {
+    // Estructura HTML del componente con campos de entrada y botón
     this.shadowRoot.innerHTML = `
       <style>
         label, input, button {
@@ -19,15 +22,17 @@ class InputRange extends HTMLElement {
       <button id="enviar">Enviar</button>
     `;
 
+    // Asignación de evento al botón
     this.shadowRoot.querySelector('#enviar')
       .addEventListener('click', () => this.enviarRango());
   }
 
+  // Función que valida y emite el rango mediante un evento personalizado
   enviarRango() {
     const inicio = parseInt(this.shadowRoot.querySelector('#inicio').value);
     const fin = parseInt(this.shadowRoot.querySelector('#fin').value);
 
- // Validación de campos numéricos y lógica del rango
+    // Validación de campos numéricos y lógica del rango
     if (isNaN(inicio) || isNaN(fin)) {
       alert("Por favor, ingrese valores numéricos.");
       return;
@@ -37,3 +42,17 @@ class InputRange extends HTMLElement {
       alert("El número inicial debe ser menor o igual al final.");
       return;
     }
+
+    // Emisión del evento personalizado con los datos del rango
+    const evento = new CustomEvent('rango-seleccionado', {
+      detail: { inicio, fin },
+      bubbles: true,
+      composed: true
+    });
+
+    this.dispatchEvent(evento);
+  }
+}
+
+// Registro del componente personalizado
+customElements.define('input-range', InputRange);
